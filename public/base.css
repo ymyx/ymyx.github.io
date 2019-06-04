@@ -1,0 +1,54 @@
+@charset "utf-8";
+/* 清零 */
+*:focus{outline: none;}
+html{
+	/*禁用iPhone中Safari的字号自动调整*/
+	-webkit-text-size-adjust:100%;
+	-ms-text-size-adjust:100%;
+	/* 解决IOS默认滑动很卡的情况 */
+	-webkit-overflow-scrolling : touch;
+	/*设置字体大小为100像素iphone6目的是为了便于计算*/
+	font-size: 100px;
+	/*设置字体大小跟随屏幕尺寸进行变化（适配）*/
+	font-size: 26.66666vw;
+}
+@media (min-width:540px) {
+	html{
+		font-size: 144px;
+	}
+}
+body{font-family:'Microsoft YaHei', Tahoma,Arial,"Roboto","Droid Sans","Helvetica Neue","Droid Sans Fallback","STHeiti",sans-serif;font-size: 0.12rem;}
+/*去除iPhone中默认的input样式*/
+input{-webkit-appearance:none; resize:none;}
+/*取消链接高亮*/
+body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,select,p,dl,dt,dd,a,img,button,form,table,th,th,tr,th,tbody,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{-webkit-tap-hightlight-color:rgba(0,0,0,0);    -webkit-tap-highlight-color: transparent; margin: 0;padding: 0;border: none; }
+/*设置HTML5元素为块级元素*/
+article,aside,details,figcaption,figure,footer,hgroup,menu,nav,section{display: block;}
+/*图片自适应*/
+img{max-width: 100%;height: auto;width:auto\9; /*IE8*/-ms-interpolation-mode:bicubic; /*为了照顾IE图片缩放失真*/}
+
+
+em,i,strong{font-style: normal;}
+.clearfix:after{content: "";display: block;visibility: hidden;height: 0; clear: both;}
+.clearfix{zoom:1}
+a{text-decoration: none;color: #666;font-family:'Microsoft YaHei', Tahoma,Arial,"Roboto","Droid Sans","Helvetica Neue","Droid Sans Fallback","STHeiti",sans-serif;}
+a:hover{color: #929292; text-decoration: none;}
+ul,ol,li{list-style: none;}
+h1,h2,h3,h4,h5,h6{font-size: 100%; font-family:'Microsoft YaHei', Tahoma,Arial,"Roboto","Droid Sans","Helvetica Neue","Droid Sans Fallback","STHeiti",sans-serif;}
+fieldset,img{border: none;}
+table{border-collapse: collapse;border-spacing: 0;}
+caption,th{text-align: left;}
+q:before,q:after{content: "";}
+/*禁止表单使用文本框输入法*/
+input:password{ime-mode: disabled;}
+.scope{max-width: 640px;margin: 0 auto;}
+.clear{clear: both;}
+/*连续英文，数字换行*/
+.wordwrap{word-break: break-all;word-wrap: break-word;}
+/*单行文字超出显示省略号*/
+.omg{overflow: hidden;text-overflow:ellipsis ;white-space: nowrap;}
+*{box-sizing: border-box;}
+/* 禁止长按链接与图片弹出菜单 */
+a, img {-webkit-touch-callout: none; vertical-align: top;}
+/* 禁止选中文本（如无文本选中需求，此为必选项） */
+html, body {-webkit-user-select: none;user-select: none; overflow: hidden; width: 100%; height: 100%;}
