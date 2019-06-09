@@ -1,5 +1,11 @@
 module.exports = class extends think.Logic {
-  indexAction() {
-
+  listAction() {
+    this.rules = {
+      typeId:{
+        int:true,
+        required:true,
+        method:'GET',
+      }
+    };
   }
 };

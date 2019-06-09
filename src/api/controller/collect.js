@@ -2,8 +2,7 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async listAction() {
-    const typeId = this.get('typeId');
-
+    const typeId = this.get('typeId')||0;
     const list = await this.model('collect')
       .field(['c.*', 'g.name', 'g.list_pic_url', 'g.goods_brief', 'g.retail_price'])
       .alias('c')

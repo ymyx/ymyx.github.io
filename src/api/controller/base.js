@@ -5,6 +5,7 @@ module.exports = class extends think.Controller {
     const tokenSerivce = think.service('token', 'api');
     this.ctx.state.userId = await tokenSerivce.getUserId(this.ctx.state.token);
 
+
     const publicController = this.config('publicController');
     const publicAction = this.config('publicAction');
     // 如果为非公开，则验证用户是否登录
@@ -12,6 +13,11 @@ module.exports = class extends think.Controller {
     if (!publicController.includes(this.ctx.controller) && !publicAction.includes(controllerAction)) {
       if (this.ctx.state.userId <= 0) {
         return this.fail(401, '请先登录');
+      }
+      //校验数据库token如果无token则也失效
+      const token = await this.model('user').field(['token']).where({ id: this.ctx.state.userId }).find();
+      if(think.isEmpty(token)){
+        return this.fail(401,'token无效')
       }
     }
   }

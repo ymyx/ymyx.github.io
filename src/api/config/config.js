@@ -25,6 +25,7 @@ module.exports = {
     'cart/update',
     'cart/delete',
     'cart/goodscount',
-    'pay/notify'
+    'pay/notify',
+    'register/index'
   ]
 };

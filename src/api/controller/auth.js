@@ -44,7 +44,6 @@ module.exports = class extends Base {
     if (think.isEmpty(newUserInfo) || think.isEmpty(sessionKey)) {
       return this.fail('登录失败');
     }
-
     return this.success({ token: sessionKey, userInfo: newUserInfo });
   }
   async logoutAction() {

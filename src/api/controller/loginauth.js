@@ -13,9 +13,13 @@ module.exports = class extends Base {
         username,
         password
       };
-      let userid = await this.model('user').where(data).getField('id',true);
+      let userid = await this.model('user').where({username}).getField('id',true);
       if(think.isEmpty(userid)){
-        return this.fail({msg:'用户还未注册'});
+        return this.fail('该用户名未注册');
+      }
+      userid = await this.model('user').where(data).getField('id',true);
+      if(think.isEmpty(userid)){
+        return this.fail('密码不正确');
       }
 
       var userfull = await this.model('user').field(['id','username','token','last_login_time']).where({id:userid}).find();
@@ -39,7 +43,6 @@ module.exports = class extends Base {
         last_login_ip:clientIp,
         token:sessionKey
       });
-
       if(think.isEmpty(userfull) || think.isEmpty(sessionKey)){
         return this.fail('登录失败');
       }
@@ -49,7 +52,27 @@ module.exports = class extends Base {
     }
   }
 
-  async logoutAction() {
-    return this.success();
+  async loginoutAction() {
+    let token = this.ctx.header['x-nideshop-token'] || '';
+    const tokenSerivce = think.service('token', 'api');
+    let userid = await tokenSerivce.getUserId(token);
+    if(userid<=0){
+      return this.success({
+        msg:'token已清除'
+      })
+    }
+    let newuserid = await  this.model('user').where({id:userid}).update({
+      last_login_time:parseInt(new Date().getTime()/1000),
+      last_login_ip:this.ctx.ip,
+      token:''
+    });
+    if(think.isEmpty(newuserid)){
+      this.fail('请求失败，请重新请求')
+    }else{
+      return this.success({
+        msg:'token已清除'
+      });
+    }
+
   }
 };
