@@ -16,7 +16,8 @@ module.exports = class extends think.Controller {
       }
       //校验数据库token如果无token则也失效
       const token = await this.model('user').field(['token']).where({ id: this.ctx.state.userId }).find();
-      if(think.isEmpty(token)){
+      console.log(token)
+      if(think.isEmpty(token)||token.token===''){
         return this.fail(401,'token无效')
       }
     }
