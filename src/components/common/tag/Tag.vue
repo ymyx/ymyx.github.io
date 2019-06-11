@@ -17,14 +17,9 @@
       }
     },
     methods:{
-      ...mapMutations(['changeSearch','addHistorylist','changeShowStatus']),
-      change(){
-        var str = this.$refs.tag.innerHTML;
-        str = str.trim();
-        this.changeSearch(str);
-        this.changeShowStatus(2);
-        this.addHistorylist({val:{'is_hot':0,'keyword':str},vm:this})
-      }
+        change(){
+          this.$emit('goodshow',this.name)
+        }
     }
   }
 </script>

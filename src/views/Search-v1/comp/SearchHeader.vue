@@ -7,46 +7,65 @@
             <template v-slot:center>
                 <div class="search-center">
                     <i class="iconfont icon-search"></i>
-                    <input @focus="changeInput(mysearch)" type="text" :placeholder="tip" v-model.trim="mysearch">
+                    <input  type="text" v-model.trim="mysearch" :placeholder="defaultKeyword">
                 </div>
             </template>
             <template v-slot:right>
-                <div class="right" @click="goodshow(mysearch)">
+                <div class="right" @click="jump">
                     搜索
                 </div>
             </template>
         </top-header>
+
     </div>
 </template>
 
 <script>
   import TopHeader from "components/common/header/TopHeader";
   import TopHeaderBack from "components/common/header/TopHeaderBack";
-  import mixin from "../mixin.js";
+  import {mapActions, mapMutations, mapState} from "vuex";
 
   export default {
     name: "SearchHeader",
-    mixins:[mixin],
+    props:{
+      defaultKeyword:{
+        type:String,
+        default:''
+      }
+    },
     data(){
       return {
+
       }
     },
     watch:{
 
     },
     computed:{
+      ...mapState(['search']),
       mysearch:{
         get(){
           return this.search
         },
-        async set(newval){
-          this.changeInput(newval);
+        async set(val){
+          if(val==this.search)return;
+          this.changeSearch(val)
+          this.changeShowStatus(1);
+          await this.getSearchListData(val);
         }
       }
+
     },
     components:{
       TopHeader,
       TopHeaderBack
+    },
+    methods:{
+      ...mapMutations(["changeSearch",'changeShowStatus']),
+      ...mapActions(['getSearchListData']),
+      jump(){
+        this.changeShowStatus(2);
+      }
     }
   }
 </script>

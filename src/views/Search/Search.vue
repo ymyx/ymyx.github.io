@@ -2,48 +2,48 @@
     <transition enter-active-class="animated slideInRight"
                 leave-active-class="animated slideOutRight">
         <div class="search">
-            <search-header :defaultKeyword="defaultKeyword"></search-header>
-            <tag-box v-show="showStatus==0&&historylist.length" :list="historylist" :showdelete="true">历史记录</tag-box>
-            <tag-box v-show="showStatus==0" :list="hotlist">热门搜索</tag-box>
-            <ul class="search-list" v-show="showStatus==1">
-                <li v-for="(item,index) in searchlist" @click="jump(item)">
+            <search-header @goodshow="goodshow" :placeholder="tip"></search-header>
+            <tag-box
+                    @goodshow="goodshow"
+                    v-show="historylist.length&&status==0" @ymremove="clearHistorylist(this)" :showdelete="true"
+                     :list="historylist">
+                历史记录
+            </tag-box>
+            <tag-box
+                    @goodshow="goodshow"
+                    v-show="status==0" :list="hotlist">
+                热门搜索
+            </tag-box>
+            <ul class="search-list" v-show="status ==1">
+                <li v-for="(item,index) in searchlist" @click="goodshow(item)">
                     {{item}}
                 </li>
             </ul>
-            <search-select v-show="showStatus==2"></search-select>
+            <search-select v-show="status==2"></search-select>
+
+
         </div>
     </transition>
 </template>
 <script>
-  import SearchHeader from "./comp/SearchHeader";
-  import SearchSelect from "./comp/SearchSelect";
+  import mixin from './mixin'
+  import SearchHeader from "../Search/comp/SearchHeader";
   import TagBox from "components/common/tag/TagBox";
-  import {mapActions, mapGetters, mapMutations, mapState} from 'vuex';
+  import SearchSelect from "../Search/comp/SearchSelect";
 
   export default {
+    mixins: [mixin],
     name: "search",
     data() {
       return {}
     },
-    computed: {
-      ...mapState(['defaultKeyword', 'search', 'hotlist', 'historylist', 'searchlist', 'showStatus']),
-    },
-    methods: {
-      ...mapMutations(['addHistorylist', 'clearHistory', 'changeSearch', 'changeShowStatus']),
-      ...mapActions(['getSearchGoodsData']),
-      async jump(item) {
-        this.changeSearch(item)
-        this.changeShowStatus(2)
-        await this.getSearchGoodsData()
-        console.log(this.$store.state)
-      },
-    },
+    computed: {},
+    methods: {},
     deactivated() {
-      this.changeSearch('');
-      this.changeShowStatus(0)
+      this.goinit();
     },
     async created() {
-      await this.$store.dispatch('getSearchData', this);
+      await this.hottagdata(this)
     },
     components: {
       SearchHeader,

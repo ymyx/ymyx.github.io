@@ -1,8 +1,8 @@
 <template>
-    <div class="good-box" v-if="">
-        <Scroll @pullingup="getnextpage" :list="goodlist">
+    <div class="good-box">
+        <Scroll @pullingup="getnextpage">
             <ul>
-                <li v-for="(item,index) in goodlist" :key="item.name">
+                <li v-for="(item,index) in list">
                     <img :src="item.list_pic_url" alt="">
                     <p>
                         {{item.name}}
@@ -10,10 +10,6 @@
                     <p>{{item.retail_price}}</p>
                 </li>
             </ul>
-            <div class="none" v-show="!goodlist.length">
-                <i class="iconfont icon-cry"></i>
-                <p>没有更多</p>
-            </div>
         </Scroll>
 
     </div>
@@ -22,22 +18,28 @@
 <script>
   import {mapActions, mapState} from "vuex";
   import Scroll from "components/common/Scroll/Scroll";
-  import mixin from "../mixin";
 
   export default {
     name: "SearchSelect",
-    mixins:[mixin],
+    computed: {
+      ...mapState({
+        list: 'goodlist',
+        total: 'totalPages',
+        page: 'currentPage'
+      })
+    },
     components: {
       Scroll
     },
-    watch:{
-    },
     methods:{
-      async getnextpage(fn){
+      ...mapActions(["getSearchGoodsData"]),
+      async getnextpage(scroll){
         var nextpage = this.page+1;
         if(nextpage> this.total){ console.log('没有需要再添加的数据');  return;}
-        await this.goodsdata({page:nextpage})
-        fn();
+        await this.getSearchGoodsData({page:nextpage})
+        console.log(scroll)
+        scroll.refresh();
+        scroll.finishPullUp();
       }
     }
   }
@@ -65,17 +67,6 @@
             padding: 0 0.1rem;
             width: 49%;
             height: 1.96rem;
-        }
-    }
-    .none{
-        height: 2rem;
-        color:#999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        .iconfont{
-            font-size:0.35rem;
         }
     }
 </style>

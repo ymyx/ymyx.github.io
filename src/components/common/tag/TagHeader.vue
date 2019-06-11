@@ -1,7 +1,7 @@
 <template>
     <h2>
         <slot></slot>
-        <span @click="deleteLocalHistory" v-if="showdelete" class="iconfont icon-delete"></span>
+        <span @click="remove()" v-if="showdelete" class="iconfont icon-delete"></span>
     </h2>
 </template>
 
@@ -17,9 +17,8 @@
       }
     },
    methods:{
-      ...mapMutations(['clearHistorylist']),
-     deleteLocalHistory(){
-        this.clearHistorylist(this)
+     remove(){
+        this.$emit('ymremove')
      }
    }
   }

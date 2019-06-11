@@ -11,17 +11,36 @@
 
   export default {
     name: "Scroll",
+    props:{
+      list:{
+        type:Array,
+        required:true
+      }
+    },
+    data(){
+      return {
+        scroll:null
+      }
+    },
+    watch:{
+      list(){
+        this.scroll.refresh();
+        this.scroll.finishPullUp();
+      }
+    },
     mounted() {
-      var scroll = new BScroll(this.$refs.bs,{
+      this.scroll = new BScroll(this.$refs.bs,{
         scrollY:true,
         probeType:3,
         pullUpLoad:true
       });
-      scroll.on('scroll',(obj)=>{
+      this.scroll.on('scroll',(obj)=>{
       })
-      scroll.on('pullingUp',()=>{
-        console.log('xxx')
-        this.$emit('pullingup',scroll)
+      this.scroll.on('pullingUp',()=>{
+        this.$emit('pullingup',()=>{
+          this.scroll.refresh();
+          this.scroll.finishPullUp();
+        })
       })
 
     }
