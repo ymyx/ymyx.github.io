@@ -1,4 +1,4 @@
-const ApiRootUrl = 'http://127.0.0.1:8360/api/';
+const ApiRootUrl = 'http://192.168.113.113:8360/api/';
 
 let api =  {
   ApiRootUrl:ApiRootUrl,
@@ -8,6 +8,8 @@ let api =  {
 
   AuthLoginByWeixin: 'auth/loginByWeixin', //微信登录
   AuthLoginByUserName: 'loginauth/login', //用户名登陆
+
+  AuthLoginOuth: 'loginauth/loginout', //用户名退出登录，清除token
 
   registerByUserName:'resister/index', //用户名注册
 
@@ -64,5 +66,4 @@ let api =  {
   FootprintList: 'footprint/list',  //足迹列表
   FootprintDelete: 'footprint/delete',  //删除足迹
 };
-console.log(api)
 export default api;

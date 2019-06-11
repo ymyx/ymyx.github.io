@@ -16,9 +16,6 @@
 
 <style scoped lang="less">
     .header{
-        position: absolute;
-        left: 0;
-        top: 0;
         z-index: 99;
         height: 44px;
         display: flex;
@@ -26,7 +23,6 @@
         background: #fff;
         font-size:14px;
         .center{
-            margin: 0 20px;
             flex: 1;
             height: 100%;
             display: flex;
@@ -39,6 +35,12 @@
         .left,.right{
             width: 50px;
             height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        & /deep/ .iconfont{
+            font-size: 26px;
         }
     }
 </style>

@@ -1,16 +1,24 @@
 import Vue from 'vue'
+import VueBus from "vue-bus";
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/store'
 import {money} from "./config/fillter";
-import vueg from 'vueg';
+import VueLocalStorage from "vue-localstorage";
+
 
 Vue.filter('money',money);
 
 Vue.config.productionTip = false
-Vue.use(vueg,router)
-
+Vue.use(VueBus)
+Vue.use(VueLocalStorage)
 new Vue({
+  localStorage:{
+    historylist:{
+      type:Array,
+      default:[]
+    }
+  },
   router,
   store,
   render: h => h(App)

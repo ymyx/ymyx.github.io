@@ -1,5 +1,5 @@
 <template>
-    <div class=" home">
+    <div class=" home" v-if="show">
         <home-header></home-header>
         <!--焦点图-->
         <home-swiper :banner="banner"></home-swiper>
@@ -36,18 +36,24 @@
         channel: [],
         brandList: [],
         NewGoods:[],
-        TopicList:[]
+        TopicList:[],
+        show:false
       }
     },
     async created() {
-      let data = await getHome();
-      let arr = Object.freeze(data.data)
-      this.banner = arr.banner;
-      console.log(arr)
-      this.channel = arr.channel;
-      this.brandList = arr.brandList;
-      this.NewGoods = arr.newGoodsList;
-      this.TopicList  = arr.topicList
+      try {
+        let data = await getHome();
+        let arr = Object.freeze(data.data)
+        this.show = true;
+        this.banner = arr.banner;
+        this.channel = arr.channel;
+        this.brandList = arr.brandList;
+        this.NewGoods = arr.newGoodsList;
+        this.TopicList  = arr.topicList
+      }catch (e) {
+        console.warn(e)
+      }
+
     }
   }
 </script>

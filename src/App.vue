@@ -1,5 +1,5 @@
 <template>
-    <div class="scope" v-transition>
+    <div class="scope" >
         <div class="main">
            <keep-alive>
              <router-view/>
@@ -17,8 +17,6 @@
     data() {
       return {
         tabbar,
-        TransitionEnterClassName:'',
-        TransitionLeaveClassName:''
       }
     },
     watch:{

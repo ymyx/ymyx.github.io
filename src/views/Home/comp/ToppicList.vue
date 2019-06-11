@@ -10,7 +10,7 @@
                        :imgurl="item.item_pic_url"
                        :title="item.title"
                        :desc="item.subtitle"
-                       v-for="(item,index) in goods"></Topic>
+                       v-for="(item,index) in goods" :key="item.id"></Topic>
             </div>
         </template>
     </good-box>

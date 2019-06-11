@@ -8,8 +8,12 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "better-scroll": "^1.15.2",
     "core-js": "^2.6.5",
+    "lodash": "^4.17.11",
     "vue": "^2.6.10",
+    "vue-bus": "^1.2.1",
+    "vue-localstorage": "^0.6.2",
     "vue-router": "^3.0.3",
     "vueg": "^1.4.5",
     "vuex": "^3.0.1"
@@ -17,8 +21,10 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
+    "babel-plugin-lodash": "^3.3.4",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
+    "lodash-webpack-plugin": "^0.11.5",
     "vue-template-compiler": "^2.6.10"
   }
 }

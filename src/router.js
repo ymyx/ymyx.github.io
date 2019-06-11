@@ -51,8 +51,12 @@ export default new Router({
     },
     {
       path:'/search',
-      component:Search,
-      index:0
+      component:()=>import('./views/Search/Search.vue'),
+      index:0,
+    },
+    {
+      path:'/list/:wd',
+      component:()=>import('./views/List/List')
     }
     /*{
       path: '/about',
