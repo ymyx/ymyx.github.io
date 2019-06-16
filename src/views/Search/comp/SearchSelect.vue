@@ -2,7 +2,7 @@
     <div class="good-box" v-if="">
         <Scroll @pullingup="getnextpage" :list="goodlist">
             <ul>
-                <li v-for="(item,index) in goodlist" :key="item.name">
+                <li v-for="(item,index) in goodlist" :key="item.name" @click="jump(item.id)">
                     <img :src="item.list_pic_url" alt="">
                     <p>
                         {{item.name}}
@@ -38,6 +38,9 @@
         if(nextpage> this.total){ console.log('没有需要再添加的数据');  return;}
         await this.goodsdata({page:nextpage})
         fn();
+      },
+      jump(id){
+        this.$router.push('/detail/'+id)
       }
     }
   }

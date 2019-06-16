@@ -11,7 +11,7 @@ let api =  {
 
   AuthLoginOuth: 'loginauth/loginout', //用户名退出登录，清除token
 
-  registerByUserName:'resister/index', //用户名注册
+  registerByUserName:'register/index', //用户名注册
 
   GoodsCount: 'goods/count',  //统计商品总数
   GoodsList: 'goods/list',  //获得商品列表

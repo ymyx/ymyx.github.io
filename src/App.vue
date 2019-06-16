@@ -1,7 +1,7 @@
 <template>
     <div class="scope" >
         <div class="main">
-           <keep-alive>
+           <keep-alive :include="['Home','Topic','Category','Cart','user']">
              <router-view/>
            </keep-alive>
         </div>
@@ -26,6 +26,13 @@
     }
   }
 </script>
+<style>
+    ::-webkit-scrollbar {
+        height: 0;
+        width: 0;
+        background: transparent;
+    }
+</style>
 <style lang="less" scoped>
 .scope{
     width: 100%;

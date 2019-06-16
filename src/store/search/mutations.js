@@ -16,10 +16,12 @@ var mutations =  {
     state.hotlist = payload;
   },
   addHistorylist(state, payload) {
-    var res = [payload.val, ...state.historylist];
-    res = _.unionBy(res, 'keyword')
-    state.historylist = res;
-    this.commit('searchmodule/setLocalStorage', payload.vm)
+    if(payload.val.keyword!==''){
+      var res = [payload.val, ...state.historylist];
+      res = _.unionBy(res, 'keyword')
+      state.historylist = res;
+      this.commit('searchmodule/setLocalStorage', payload.vm)
+    }
   },
   addGoodList(state, payload) {
     state.goodlist = [...state.goodlist,...payload.data];

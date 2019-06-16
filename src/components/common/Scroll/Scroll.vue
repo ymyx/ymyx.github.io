@@ -32,7 +32,8 @@
       this.scroll = new BScroll(this.$refs.bs,{
         scrollY:true,
         probeType:3,
-        pullUpLoad:true
+        pullUpLoad:true,
+        click:true
       });
       this.scroll.on('scroll',(obj)=>{
       })
@@ -42,7 +43,6 @@
           this.scroll.finishPullUp();
         })
       })
-
     }
   }
 </script>

@@ -5,8 +5,8 @@ import router from './router'
 import store from './store/store'
 import {money} from "./config/fillter";
 import VueLocalStorage from "vue-localstorage";
-
-
+import Toast from 'components/common/toast'
+Vue.use(Toast);
 Vue.filter('money',money);
 
 Vue.config.productionTip = false
