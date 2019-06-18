@@ -1,4 +1,4 @@
-const ApiRootUrl = 'http://192.168.113.113:8360/api/';
+const ApiRootUrl = 'http://kumanxuan1.f3322.net:8360/api/';
 
 let api =  {
   ApiRootUrl:ApiRootUrl,

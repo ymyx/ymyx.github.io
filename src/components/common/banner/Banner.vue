@@ -144,6 +144,9 @@
     deactivated(){
       this.stopAutoPlay();
     },
+    destroyed(){
+      this.stopAutoPlay();
+    },
     mounted() {
       this.init();
       this.autoplay();

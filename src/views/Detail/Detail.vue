@@ -2,12 +2,12 @@
     <div class="detail">
         <detail-header :title="info.title"></detail-header>
         <div class="container">
-            <detail-swiper :banner="data"></detail-swiper>
+            <detail-swiper ></detail-swiper>
             <goods-info :info="info"></goods-info>
-            <goods-params :params="params"></goods-params>
+            <goods-params></goods-params>
             <goods-pics :pics="info.pics"></goods-pics>
         </div>
-        <detail-select visible="true"></detail-select>
+        <detail-select></detail-select>
         <goods-bar></goods-bar>
     </div>
 </template>
@@ -21,20 +21,15 @@
   import {createNamespacedHelpers} from "vuex";
   import GoodsBar from "./comp/GoodsBar";
   import DetailSelect from "./comp/DetailSelect";
+  import DetailMixin from "./comp/DetailMixin";
   let {mapActions} = createNamespacedHelpers('goodsmodule')
   export default {
     name: "Detail",
+    mixins:[DetailMixin],
     props: {
       id: {
         type: String,
         required: true
-      }
-    },
-    data(){
-      return {
-        data:[],
-        info:{},
-        params:[]
       }
     },
     methods: {
@@ -52,9 +47,10 @@
     async created() {
       let res = await this.getdetailData(this.id);
       console.log(res.data)
-      this.data = res.data.gallery
+      this.banner = res.data.gallery
       this.info = new Goodsinfo(res.data.info)
       this.params= res.data.attribute
+      this.cartOptions = res.data.specificationList
     }
   }
   class Goodsinfo{

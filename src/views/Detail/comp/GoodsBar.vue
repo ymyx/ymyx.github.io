@@ -12,18 +12,19 @@
 </template>
 
 <script>
+  import DetailMixin from "./DetailMixin";
+
   export default {
     name: "GoodsBar",
-    data(){
-      return {
-        status:0
-      }
-    },
+    mixins:[DetailMixin],
     methods:{
       addCart(){
-        if(this.status==0){
-
+        if(this.status ==1){
+          this.status ==2
+        }else{
+          this.status ==1;
         }
+        this.changeSelectBar();
       }
     }
   }

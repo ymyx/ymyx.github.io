@@ -1,5 +1,5 @@
 <template>
-    <div class="params">
+    <div class="params" v-if="params">
         <h2>商品参数</h2>
         <ul>
             <li v-for="(item,index) in params">
@@ -7,19 +7,14 @@
                 <span class="right omg">{{item.value}}</span>
             </li>
         </ul>
-
     </div>
 </template>
 
 <script>
+  import DetailMixin from "./DetailMixin";
   export default {
+    mixins:[DetailMixin],
     name: "GoodsParams",
-    props:{
-      params:{
-        type:Array,
-        required:true
-      }
-    }
   }
 </script>
 

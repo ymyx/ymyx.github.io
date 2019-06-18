@@ -47,16 +47,12 @@
 
 <script>
   import Tag from "components/common/tag/Tag";
+  import DetailMixin from "./DetailMixin";
 
   export default {
     name: "DetailSelect",
     components: {Tag},
-    props:{
-      visible:{
-        type:Boolean,
-        default:false
-      }
-    }
+    mixins:[DetailMixin]
   }
 </script>
 
