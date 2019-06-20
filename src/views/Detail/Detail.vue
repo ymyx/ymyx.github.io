@@ -18,11 +18,9 @@
   import GoodsInfo from "./comp/GoodsInfo";
   import GoodsParams from "./comp/GoodsParams";
   import GoodsPics from "./comp/GoodsPics";
-  import {createNamespacedHelpers} from "vuex";
   import GoodsBar from "./comp/GoodsBar";
   import DetailSelect from "./comp/DetailSelect";
   import DetailMixin from "./comp/DetailMixin";
-  let {mapActions} = createNamespacedHelpers('goodsmodule')
   export default {
     name: "Detail",
     mixins:[DetailMixin],
@@ -31,9 +29,6 @@
         type: String,
         required: true
       }
-    },
-    methods: {
-      ...mapActions(['getdetailData'])
     },
     components:{
       DetailSelect,
@@ -45,22 +40,10 @@
       GoodsParams
     },
     async created() {
-      let res = await this.getdetailData(this.id);
-      console.log(res.data)
-      this.banner = res.data.gallery
-      this.info = new Goodsinfo(res.data.info)
-      this.params= res.data.attribute
-      this.cartOptions = res.data.specificationList
+      this.getdata(this.id)
     }
   }
-  class Goodsinfo{
-    constructor(data){
-      this.title=data.name
-      this.subtitle=data.goods_brief
-      this.price = data.retail_price
-      this.pics= data.goods_desc
-    }
-  }
+
 </script>
 
 <style scoped>

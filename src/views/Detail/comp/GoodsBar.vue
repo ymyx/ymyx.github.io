@@ -4,8 +4,7 @@
             <i class="iconfont icon-favorite"></i>
         </span>
         <span>
-             <b>0</b>
-            <i class="iconfont icon-cart"></i>
+            <i class="iconfont icon-cart" @click="$router.push({name:'cart'})"></i>
         </span>
         <span class="red" @click="addCart()">加入购物车</span>
     </div>
@@ -17,16 +16,6 @@
   export default {
     name: "GoodsBar",
     mixins:[DetailMixin],
-    methods:{
-      addCart(){
-        if(this.status ==1){
-          this.status ==2
-        }else{
-          this.status ==1;
-        }
-        this.changeSelectBar();
-      }
-    }
   }
 </script>
 

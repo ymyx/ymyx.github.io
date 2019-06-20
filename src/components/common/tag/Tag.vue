@@ -1,5 +1,6 @@
 <template>
-    <span @click="change" ref="tag">
+    <span @click="change">
+        <slot></slot>
         {{name}}
     </span>
 </template>
@@ -19,6 +20,7 @@
     methods:{
         change(){
           this.$emit('goodshow',this.name)
+          this.$emit('tagchange')
         }
     }
   }

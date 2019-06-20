@@ -7,6 +7,21 @@ function goodsDetail(options) {
     params: options
   })
 }
+function addCart(options) {
+  return request({
+    url:api.CartAdd,
+    data:options,
+    method:'post'
+  })
+}
+
+function getGoodsCout() {
+  return request({
+    url:api.CartGoodsCount,
+  })
+}
 export {
-  goodsDetail
+  goodsDetail,
+  addCart,
+  getGoodsCout
 }
